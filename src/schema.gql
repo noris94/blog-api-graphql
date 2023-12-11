@@ -1,0 +1,72 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Publicacion {
+  """Id Publicación autogenerado"""
+  publicacion_id: Int!
+  titulo: String!
+  contenido: String!
+  fecha_publicacion: DateTime!
+  usuario_id: Int!
+  usuario: Usuario!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Usuario {
+  """Id Usuario autogenerado"""
+  usuario_id: Int!
+  nombre: String!
+  email: String!
+  fechaCreacion: DateTime!
+  avatar_url: String
+  publicaciones: [Publicacion!]!
+}
+
+type Query {
+  usuarios: [Usuario!]!
+  usuario(id: Int!): Usuario!
+  publicaciones: [Publicacion!]!
+  publicacion(id: Int!): Publicacion!
+}
+
+type Mutation {
+  createUsuario(createUsuarioInput: CreateUsuarioInput!): Usuario!
+  updateUsuario(updateUsuarioInput: UpdateUsuarioInput!): Usuario!
+  removeUsuario(id: Int!): Usuario!
+  createPublicacion(createPublicacionInput: CreatePublicacionInput!): Publicacion!
+  updatePublicacion(updatePublicacionInput: UpdatePublicacionInput!): Publicacion!
+  removePublicacion(id: Int!): Publicacion!
+}
+
+input CreateUsuarioInput {
+  nombre: String!
+  email: String!
+  password: String!
+  avatar_url: String
+}
+
+input UpdateUsuarioInput {
+  nombre: String
+  email: String
+  password: String
+  avatar_url: String
+  usuario_id: Int!
+}
+
+input CreatePublicacionInput {
+  titulo: String!
+  contenido: String!
+  usuario_id: Int!
+}
+
+input UpdatePublicacionInput {
+  titulo: String
+  contenido: String
+  usuario_id: Int
+  publicacion_id: Int!
+}
