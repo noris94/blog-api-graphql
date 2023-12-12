@@ -31,14 +31,14 @@ export class PublicacionesService {
   }
 
   update(id: number, updatePublicacionInput: UpdatePublicacionInput) {
-    return this.publicacionRepsitory.update(
-      { publicacion_id: id },
-      updatePublicacionInput,
-    );
+    return this.publicacionRepsitory.save({
+      publicacion_id: id,
+      ...updatePublicacionInput,
+    });
   }
 
-  remove(id: number) {
-    return this.publicacionRepsitory.delete({ publicacion_id: id });
+  async remove(id: number) {
+    await this.publicacionRepsitory.delete({ publicacion_id: id });
   }
 
   getInfoUsuario(usuario_id: number) {

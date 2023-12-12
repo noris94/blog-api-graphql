@@ -20,7 +20,6 @@ export class AuthGuard implements CanActivate {
     const rawHeaders = ctx.getContext().req.rawHeaders;
     const authorizationHeader =
       rawHeaders[rawHeaders.indexOf('Authorization') + 1];
-    console.log(2, authorizationHeader);
     const token = this.extractTokenFromHeader(authorizationHeader);
     const jwtSecret = this.configService.get('auth.jwtSecret');
 

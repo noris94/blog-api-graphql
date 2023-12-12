@@ -57,8 +57,9 @@ export class UsuariosResolver {
   }
 
   @UseGuards(AuthGuard)
-  @Mutation(() => Usuario)
-  removeUsuario(@Args('id', { type: () => Int }) id: number) {
-    return this.usuariosService.remove(id);
+  @Mutation(() => Boolean)
+  async removeUsuario(@Args('id', { type: () => Int }) id: number) {
+    await this.usuariosService.remove(id);
+    return true;
   }
 }

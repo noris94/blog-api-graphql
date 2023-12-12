@@ -30,14 +30,14 @@ export class UsuariosService {
   }
 
   update(id: number, updateUsuarioInput: UpdateUsuarioInput) {
-    return this.usuarioRepository.update(
-      { usuario_id: id },
-      updateUsuarioInput,
-    );
+    return this.usuarioRepository.save({
+      usuario_id: id,
+      ...updateUsuarioInput,
+    });
   }
 
-  remove(id: number) {
-    return this.usuarioRepository.delete({ usuario_id: id });
+  async remove(id: number) {
+    await this.usuarioRepository.delete({ usuario_id: id });
   }
 
   findPosts(usuario_id: number) {

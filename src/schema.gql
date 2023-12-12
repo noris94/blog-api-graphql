@@ -37,7 +37,7 @@ type Query {
 type Mutation {
   createUsuario(createUsuarioInput: CreateUsuarioInput!): Usuario!
   updateUsuario(updateUsuarioInput: UpdateUsuarioInput!): Usuario!
-  removeUsuario(id: Int!): Usuario!
+  removeUsuario(id: Int!): Boolean!
   createPublicacion(createPublicacionInput: CreatePublicacionInput!): Publicacion!
   updatePublicacion(updatePublicacionInput: UpdatePublicacionInput!): Publicacion!
   removePublicacion(id: Int!): Publicacion!

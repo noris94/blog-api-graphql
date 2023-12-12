@@ -54,8 +54,9 @@ export class PublicacionesResolver {
     );
   }
 
-  @Mutation(() => Publicacion)
-  removePublicacion(@Args('id', { type: () => Int }) id: number) {
-    return this.publicacionesService.remove(id);
+  @Mutation(() => Boolean)
+  async removePublicacion(@Args('id', { type: () => Int }) id: number) {
+    await this.publicacionesService.remove(id);
+    return true;
   }
 }
