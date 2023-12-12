@@ -15,6 +15,7 @@ import { Publicacion } from '../publicaciones/entities/publicacion.entity';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { UseGuards } from '@nestjs/common';
 
+@UseGuards(AuthGuard)
 @Resolver(() => Usuario)
 export class UsuariosResolver {
   constructor(private readonly usuariosService: UsuariosService) {}
