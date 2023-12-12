@@ -9,7 +9,7 @@ import { UsuariosModule } from 'src/features/usuarios/usuarios.module';
     JwtModule.register({
       global: true,
       secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: process.env.JWT_EXPIRES },
+      signOptions: { expiresIn: '1d' },
     }),
     forwardRef(() => UsuariosModule),
   ],
