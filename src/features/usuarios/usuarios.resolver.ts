@@ -12,7 +12,10 @@ import { Usuario } from './entities/usuario.entity';
 import { CreateUsuarioInput } from './dto/create-usuario.input';
 import { UpdateUsuarioInput } from './dto/update-usuario.input';
 import { Publicacion } from '../publicaciones/entities/publicacion.entity';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { UseGuards } from '@nestjs/common';
 
+@UseGuards(AuthGuard)
 @Resolver(() => Usuario)
 export class UsuariosResolver {
   constructor(private readonly usuariosService: UsuariosService) {}
