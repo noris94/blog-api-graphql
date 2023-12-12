@@ -12,10 +12,10 @@ import { Publicacion } from './entities/publicacion.entity';
 import { CreatePublicacionInput } from './dto/create-publicacion.input';
 import { UpdatePublicacionInput } from './dto/update-publicacion.input';
 import { Usuario } from '../usuarios/entities/usuario.entity';
-// import { UseGuards } from '@nestjs/common';
-// import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
 @Resolver(() => Publicacion)
-// @UseGuards(AuthGuard)
+@UseGuards(AuthGuard)
 export class PublicacionesResolver {
   constructor(private readonly publicacionesService: PublicacionesService) {}
 

@@ -60,7 +60,7 @@ Una vez que la aplicacion, esta corriendo, se puede consultar en un navegador la
 en la cual se despliega un Playground para poder realizar las consultas y mutaciones, asimismo esta herramienta cuenta con su documentacion para ver los tipos del lado derecho, tal como se muestra en la imagen:
 
 
-![Imagen de ApolloServer Playground](https://www.apollographql.com/docs/3f877c8e310c5ec8a76934d058d511e4/graphql-playground.png)
+![Imagen de ApolloServer Playground](https://raw.githubusercontent.com/noris94/images/main/playgrund-apollo.png)
 
 ### Querys
 
@@ -95,4 +95,55 @@ Se cuentan con las siguientes mutaciones:
 ```
 
 Para mayor detalle de los tipos consultar la documentacion del Playground
+
+## Autenticación y seguridad
+
+La aplicación cuenta con algunas capas de seguridad entre las cuales se encuentran:
+
+- CORS
+- Rate Limit por cliente (para evitar ataques DOS y DDOS)
+- Validaciones de DTO's
+- Capa de base de datos usando ORM, el cual incluye proteccion XSS.
+- Autenticación por medio de JWT
+
+### Autenticación
+Todas las operaciones de GraphQL a excepción de la mutación CreateUsuario estan protegidas para que solamente mediante un JWT enviado en un Header de Authorization tipo Bearer se pueda acceder.
+
+Para obtener el token de autorización es necesario mandar el email de usuario y contraseña a la siguiente ruta (usando *Postman* o algun cliente HTTP):
+
+`POST /auth/login`
+
+**Body:**
+
+```
+{
+	"email":"1234@ejemplo.com",
+	"password":"P45sw0rD"
+}
+```
+
+Esta ruta regresa una respuesta HTTP 200 OK de este tipo:
+```
+  {
+      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ejM0QGpha..."
+  }
+```
+
+Una vez obtenido el token, para poder hacer consultas y mutaciones de GraphQL es necesario enviarse en el Header de Authorization de la siguiente manera:
+
+```
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ejM0QGpha...
+```
+
+### Authenticacion usando Playground
+
+Para poder enviar el Header con el token de autorización es necesario seleccionar la pestaña de abajo llamada `HTTP HEADERS` y ahi pegar tu token de la siguiente manera:
+
+```
+{
+  "Authorization" : "Bearer <token>"
+}
+```
+
+![Imagen de ApolloServer Playground HTTP Headers](https://raw.githubusercontent.com/noris94/images/main/playgrund-apollo-http-headers.png)
 
